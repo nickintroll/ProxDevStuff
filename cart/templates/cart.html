@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h2>
+	Your shopping cart
+</h2>
+<table>
+	<thead>
+		<tr>
+			<td>Image</td>
+			<td>Title</td>
+			<td>Quantity</td>
+			<td>Remove</td>
+			<td>Unit price</td>
+			<td>Price</td>
+		</tr>
+	</thead>
+	<tbody>
+		{% for item in cart %}
+			{% with prod=item.product %}
+			<tr>
+				<td>
+					<a href="{{ prod.get_absolute_url }}">
+						No image
+					</a>
+				</td>
+				<td>{{ prod.name }}</td>
+				<td>
+					<form action="{% url 'cart:cart_add' prod.id %}" method="post">
+						{{ item.update_quantity_form.quantity }}
+						{{ item.update_quantity_form.override }}
+						<input type="submit" value="update">
+						{% csrf_token %}
+					</form>
+				</td>
+				<td>
+					<form action="{% url 'cart:cart_remove' prod.id %}" method="post">
+						<input type="submit" value="Remove">
+						{% csrf_token %}
+					</form>
+				</td>
+				<td>{{ item.price }}</td>
+				<td>{{ item.total_price }}</td>
+			</tr>
+			{{ prod }}
+			{% endwith %}
+		{% empty %}
+		<tr>
+			Your cart is empty. Choose products and see them here.
+		</tr>
+		{% endfor %}
+		<tr>
+			<td>Total</td>
+			<td colspan="4">{{ cart.get_total_price }}</td>
+		</tr>
+
+	</tbody>
+</table>
+
+	<p>
+		<a href="{% url 'shop:main_page' %}">
+			<button>Continue shopping</button>
+		</a>
+	</p>
+	<p>
+		<a href="#">
+			Checkout
+		</a>
+	</p>
+{% endblock %}

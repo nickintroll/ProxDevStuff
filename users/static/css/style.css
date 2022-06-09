@@ -1,0 +1,84 @@
+div#header{
+	margin: -3rem;
+	padding: 3rem;
+	padding-bottom: 5px;
+	margin-bottom: 0px;
+
+	background-color: lightcyan;
+	border-bottom: 1px solid lightblue;
+
+}
+div#header > div{
+	margin: 0 auto;
+	width: fit-content;
+}
+div#header > div > div{
+	width: fit-content;
+	display: inline;
+	margin: 5px;
+
+	border: 1px solid green;
+}
+
+div#content{
+	width: fit-content;
+	margin: 0 auto;
+}
+
+div#profile-block{
+	background-color: floralwhite;
+	border: 1px solid rgb(156, 122, 84);
+	padding: 5px;
+	min-width: 450px;
+}
+
+div.top-title{
+	border-bottom: 1px solid green;
+}
+
+h2{
+	margin: 6px;
+}
+
+div.facts{
+	margin: 5px;
+	padding:5px;
+	max-width: 300wpx;
+
+
+	border: 1px solid lightgreen;
+	border-left: 5px solid blue; 
+}
+
+div.lists-div > h3{
+	border-bottom: 1px solid green;
+	margin-bottom: -10px;
+}
+
+div.lists-div > ul > li{
+	list-style:none;
+	border-bottom: 2px solid lightcoral;
+}
+
+
+div#chat{
+
+	margin: 0 auto;
+	background-color: white;
+	width: 400px;
+	border: 3px solid lightblue;
+	border-radius: 5px;
+}
+div.message{
+	border: 1px solid blue;
+	margin: 3px;
+	max-width: 250px;
+	border-radius: 10px;
+}
+
+div.message-inner{
+	background-color: rgb(218, 218, 218);
+	border-radius: 3px;
+	padding: 4px;
+	margin:4px;
+}

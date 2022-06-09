@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	{% if query %}
+		<div>
+			Search results for "{{ query }}"
+		</div>
+		<div>
+			Found {{ results.count }} resuts{{ results.count|pluralize }}
+		</div>
+		{% for item in results %}
+			<h3>
+				<a href="{{ item.get_absolute_url }}">{{ item.user }}</a>
+			</h3>
+		{% empty %}
+			There are no results
+		{% endfor %}
+		<a href="{% url 'account:user_search' %}">Search again</a>
+	{% else %}
+			<h2>
+				Seach for posts
+			</h2>
+			<div>
+				<form method="get">
+					{{ form.as_p }}
+					<input type="submit" value="search">
+				</form>
+			</div>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h2>Product_search</h2>
+	{% if query %}
+		{% for item in results %}
+			<a href="{{ item.get_absolute_url }}">
+				{{ item.name }}
+			</a>	
+		{% empty %}
+			<h4>
+				No results for '{{ query }}'
+			</h4>
+		{% endfor %}
+		<form method="get">
+			<h3>search again</h3>
+			{{ form.as_p }}
+			<input type="submit">
+		</form>
+	{% else %}
+	<form method="get">
+		{{ form.as_p }}
+		<input type="submit">
+	</form>
+	{% endif %}
+{% endblock %}

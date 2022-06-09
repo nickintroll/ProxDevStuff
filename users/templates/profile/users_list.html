@@ -1,0 +1,25 @@
+{% extends 'base.html'  %}
+
+{% block content %}
+<div id="profile-block">
+	<div>
+		<form action="{% url 'account:user_search' %}" method="get">
+			{{ form.as_p }}
+			<input type="submit" value="search">
+		</form>
+	</div>
+{% for prof in profiles %}
+	<div class="facts">
+		<a href="{{ prof.get_absolute_url }}">
+			{{ prof.user }}
+		</a>
+		<div>
+			Company: {{ prof.present_company }}
+		</div>
+	</div>
+		
+{% empty %}
+	NO RESULTS
+{% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<div>
+		<form action="{% url 'shop:search_product' %}" method="get">
+			{{ form.as_p }}
+			<input type="submit">
+		</form>
+	</div>
+	<div>
+		create_product
+	</div>
+	{% for prod in prods %}
+		<li>
+			<a href="{{ prod.get_absolute_url }}">{{  prod.name  }}</a>
+		</li>
+	{% empty %}
+		NO PRODU CTS FOR YOUR REQUEST
+	{% endfor %}
+
+{% endblock %}

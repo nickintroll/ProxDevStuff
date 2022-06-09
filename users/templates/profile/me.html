@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id='profile-block'>
+	<div class="top-title">
+		<h2>{{ user }}</h2>
+		<a href="{% url 'account:profile_edit' %}">
+			<button>Update</button>
+		</a>
+		<a href="{% url 'account:logout' %}">
+			<button>log out</button>
+		</a>
+	</div>
+	<div class="facts">
+		Company I present: <strong>{{ profile.present_company }}</strong>
+	</div>
+	<div class="facts">
+		My job offe is:	<strong>{{ profile.offer_is }}</strong>
+	</div>
+	<div class="lists-div">
+		<h3>Chats:</h3>
+		<ul>
+			{% for chat in chats %}
+				<li>
+					<a href="{% url 'chat:chat_room' chat.slug %}">
+						{% if request.user == chat.member_started.user %}
+							{{ chat.member_accepted.user }}
+						{% else %}
+							{{ chat.member_started.user }}
+						{% endif %}
+					</a>
+				</li>
+			{% endfor %}
+		</ul>
+
+	</div>
+	<div class="lists-div">
+		<h3>Products:</h3>
+		<div>
+			This is not  a commercial website
+		</div>
+		<div>
+			<a href="{% url 'shop:create_product' %}">Create product</a>
+		</div>
+		<ul>
+			{% for item in profile.products_created.all %}
+				<li>
+					<a href="{{ item.get_absolute_url }}">
+						{{ item.name }}
+					</a>
+				</li>
+			{% endfor  %}
+		</ul>
+	</div>
+</div>
+
+{% endblock %}
